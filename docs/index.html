@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的个人主页</title>
+    <title>GXZ的主页（毛胚房版）</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Microsoft YaHei', sans-serif;
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
             text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
         }
         .avatar {
             width: 150px;
@@ -16,37 +19,73 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
         }
         .links {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin: 30px 0;
+            margin: 40px 0;
         }
         .link-btn {
-            background: #000;
-            color: white;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            color: #4da6ff; /* 浅蓝色文字 */
+            padding: 16px 24px;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .link-btn:hover {
-            background: #333;
+            background: white;
+            color: #3399ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .icon {
+            font-size: 20px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <h1>欢迎来到我的主页</h1>
+    <p>在这里找到我的社交媒体</p>
     
     <div class="links">
-        <a href="https://twitter.com" class="link-btn">Twitter</a>
-        <a href="https://github.com" class="link-btn">GitHub</a>
-        <a href="https://weibo.com" class="link-btn">微博</a>
-        <a href="https://bilibili.com" class="link-btn">B站</a>
-        <a href="mailto:example@example.com" class="link-btn">发邮件给我</a>
+        <a href="https://github.com/gxz05" class="link-btn">
+            <i class="fab fa-github icon"></i> GitHub
+        </a>
+        <a href="https://weibo.com/u/7741881944" class="link-btn">
+            <i class="fab fa-weibo icon"></i> 微博
+        </a>
+        <a href="https://space.bilibili.com/3493135527184546" class="link-btn">
+            <i class="fab fa-bilibili icon"></i> 哔哩哔哩
+        </a>
+        <a href="https://www.douyin.com/user/self" class="link-btn">
+            <i class="fab fa-tiktok icon"></i> 抖音
+        </a>
+        <a href="https://www.kuaishou.com/profile/3x9app9dysdiwpq" class="link-btn">
+            <i class="fas fa-video icon"></i> 快手
+        </a>
+        <a href="mailto:guog-01@outlook.com" class="link-btn">
+            <i class="fas fa-envelope icon"></i> 发邮件给我
+        </a>
     </div>
     
-    <p>© 2026 我的个人主页</p>
+    <p style="margin-top: 50px; opacity: 0.8;">
+        © 2026 我的个人主页 · 
+        <a href="https://gxz05.github.io/myweb/" 
+           style="color: white; text-decoration: underline;">
+            gxz05.github.io/myweb
+        </a>
+    </p>
 </body>
 </html>
