@@ -376,6 +376,109 @@
             opacity: 0.7;
         }
         
+        /* QQ弹窗样式 */
+        .qq-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .qq-popup-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .qq-popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .qq-popup-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .qq-popup h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ffcc00;
+        }
+        
+        .qq-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4da6ff;
+            margin: 20px 0;
+            letter-spacing: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .copy-btn {
+            background: #4da6ff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background: #3a95ea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(77, 166, 255, 0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #43e97b;
+        }
+        
+        .contact-hint {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+        
         /* 鼠标互动效果 */
         .cursor-effect {
             position: fixed;
@@ -467,6 +570,14 @@
             
             .quote-text, .joke-text {
                 font-size: 1.2rem;
+            }
+            
+            .qq-popup-content {
+                padding: 30px 20px;
+            }
+            
+            .qq-number {
+                font-size: 1.6rem;
             }
         }
         
@@ -619,11 +730,23 @@
                             </div>
                         </a>
                         
-                        <a href="#" class="link-item" id="qqLink" onclick="showQQPopup(event)">
+                        <!-- QQ联系方式 -->
+                        <a href="javascript:void(0);" class="link-item" id="qqLink">
                             <div class="link-icon" style="color: #12b7f5; background: rgba(18,183,245,0.15);">
                                 <i class="fab fa-qq"></i>
                             </div>
-                            <div class="link-text">QQ</div>
+                            <div class="link-text">QQ: 3628486641</div>
+                            <div class="link-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </a>
+                        
+                        <!-- 电子邮件（从社交平台移动到主要联系） -->
+                        <a href="mailto:guog-01@outlook.com" class="link-item">
+                            <div class="link-icon" style="color: #0078d4; background: rgba(0,120,212,0.15);">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="link-text">电子邮件</div>
                             <div class="link-arrow">
                                 <i class="fas fa-chevron-right"></i>
                             </div>
@@ -678,15 +801,7 @@
                             </div>
                         </a>
                         
-                        <a href="mailto:guog-01@outlook.com" class="link-item">
-                            <div class="link-icon" style="color: #0078d4; background: rgba(0,120,212,0.15);">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="link-text">电子邮件</div>
-                            <div class="link-arrow">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </a>
+                        <!-- 原电子邮件链接已删除 -->
                     </div>
                 </div>
             </div>
@@ -703,23 +818,27 @@
         </footer>
     </div>
 
-    <!-- QQ弹窗 -->
-    <div id="qqPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center;">
-        <div class="glass" style="padding: 40px; max-width: 400px; text-align: center;">
-            <h3 style="margin-bottom: 20px; color: #ffcc00;">QQ联系方式</h3>
-            <p style="margin-bottom: 30px; font-size: 1.1rem;">请通过以下方式联系我：</p>
-            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                <p style="font-size: 1.2rem; margin-bottom: 10px;">邮箱联系：guog-01@outlook.com</p>
-                <p style="opacity: 0.8;">或扫描下方二维码添加QQ</p>
-            </div>
-            <div style="background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-bottom: 20px;">
-                <div style="width: 180px; height: 180px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                    <span style="color: #999;">QQ二维码占位</span>
-                </div>
-            </div>
-            <button onclick="closeQQPopup()" style="background: var(--accent); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 1rem; cursor: pointer; transition: all 0.3s;">
-                关闭
+    <!-- QQ联系方式弹窗 -->
+    <div class="qq-popup" id="qqPopup">
+        <div class="qq-popup-content glass">
+            <button class="qq-popup-close" id="closeQQPopup">
+                <i class="fas fa-times"></i>
             </button>
+            
+            <h3>添加QQ好友</h3>
+            
+            <p>请复制以下QQ号，在QQ中搜索添加：</p>
+            
+            <div class="qq-number">3628486641</div>
+            
+            <button class="copy-btn" id="copyQQBtn">
+                <i class="fas fa-copy"></i>
+                <span id="copyText">点击复制QQ号</span>
+            </button>
+            
+            <div class="contact-hint">
+                复制QQ号后，在QQ中搜索并添加好友
+            </div>
         </div>
     </div>
 
@@ -742,6 +861,10 @@
                 socialTitle: "在这里找到我的社交媒体",
                 primaryTitle: "主要联系",
                 socialMediaTitle: "社交平台",
+                copyText: "点击复制QQ号",
+                copiedText: "已复制!",
+                qqPopupTitle: "添加QQ好友",
+                contactHint: "复制QQ号后，在QQ中搜索并添加好友",
             },
             en: {
                 title: "GXZ's Homepage (Raw Version)",
@@ -759,6 +882,10 @@
                 socialTitle: "Find My Social Media Here",
                 primaryTitle: "Primary Contacts",
                 socialMediaTitle: "Social Platforms",
+                copyText: "Click to copy QQ number",
+                copiedText: "Copied!",
+                qqPopupTitle: "Add QQ Friend",
+                contactHint: "Copy QQ number and search in QQ to add friend",
             }
         };
 
@@ -849,6 +976,9 @@
             // 初始化鼠标效果
             initMouseEffects();
             
+            // 初始化QQ弹窗
+            initQQPopup();
+            
             // 检查语言偏好
             const savedLang = localStorage.getItem('preferredLang');
             if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
@@ -861,6 +991,89 @@
             if (savedTheme) {
                 document.body.style.background = savedTheme;
             }
+        }
+
+        // ========== QQ弹窗功能 ==========
+        function initQQPopup() {
+            const qqPopup = document.getElementById('qqPopup');
+            const qqLink = document.getElementById('qqLink');
+            const closeBtn = document.getElementById('closeQQPopup');
+            const copyBtn = document.getElementById('copyQQBtn');
+            
+            // 打开QQ弹窗
+            qqLink.addEventListener('click', () => {
+                qqPopup.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            });
+            
+            // 关闭QQ弹窗
+            closeBtn.addEventListener('click', () => {
+                qqPopup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // 点击弹窗背景关闭
+            qqPopup.addEventListener('click', (e) => {
+                if (e.target === qqPopup) {
+                    qqPopup.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // 复制QQ号功能
+            copyBtn.addEventListener('click', copyQQNumber);
+        }
+        
+        function copyQQNumber() {
+            const qqNumber = '3628486641';
+            const copyBtn = document.getElementById('copyQQBtn');
+            const copyText = document.getElementById('copyText');
+            
+            // 使用现代剪贴板API
+            navigator.clipboard.writeText(qqNumber).then(() => {
+                // 复制成功反馈
+                copyBtn.classList.add('copied');
+                copyText.textContent = translations[currentLang].copiedText || '已复制!';
+                copyBtn.innerHTML = `<i class="fas fa-check"></i><span id="copyText">${copyText.textContent}</span>`;
+                
+                // 3秒后恢复原状
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyText.textContent = translations[currentLang].copyText;
+                    copyBtn.innerHTML = `<i class="fas fa-copy"></i><span id="copyText">${copyText.textContent}</span>`;
+                }, 3000);
+                
+            }).catch(err => {
+                // 降级方案：使用老式复制方法
+                console.error('复制失败:', err);
+                
+                // 创建临时textarea
+                const textArea = document.createElement('textarea');
+                textArea.value = qqNumber;
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        // 复制成功反馈
+                        copyBtn.classList.add('copied');
+                        copyText.textContent = translations[currentLang].copiedText || '已复制!';
+                        copyBtn.innerHTML = `<i class="fas fa-check"></i><span id="copyText">${copyText.textContent}</span>`;
+                        
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyText.textContent = translations[currentLang].copyText;
+                            copyBtn.innerHTML = `<i class="fas fa-copy"></i><span id="copyText">${copyText.textContent}</span>`;
+                        }, 3000);
+                    }
+                } catch (err) {
+                    console.error('备用复制方法失败:', err);
+                    alert(currentLang === 'zh' ? '复制失败，请手动复制QQ号：3628486641' : 'Copy failed, please manually copy QQ: 3628486641');
+                }
+                
+                document.body.removeChild(textArea);
+            });
         }
 
         // ========== 粒子背景 ==========
@@ -1130,23 +1343,6 @@
             document.getElementById('jokeCategory').textContent = `- ${joke.category}`;
         }
 
-        // ========== QQ弹窗功能 ==========
-        function showQQPopup(event) {
-            event.preventDefault();
-            document.getElementById('qqPopup').style.display = 'flex';
-        }
-        
-        function closeQQPopup() {
-            document.getElementById('qqPopup').style.display = 'none';
-        }
-        
-        // 点击弹窗背景关闭
-        document.getElementById('qqPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeQQPopup();
-            }
-        });
-
         // ========== 语言切换 ==========
         function updateLanguage() {
             const t = translations[currentLang];
@@ -1167,6 +1363,12 @@
             document.getElementById('socialTitle').textContent = t.socialTitle;
             document.getElementById('primaryTitle').textContent = t.primaryTitle;
             document.getElementById('socialMediaTitle').textContent = t.socialMediaTitle;
+            
+            // 更新QQ弹窗内容
+            document.querySelector('.qq-popup-content h3').textContent = t.qqPopupTitle;
+            document.getElementById('copyText').textContent = t.copyText;
+            document.querySelector('.qq-popup-content p').textContent = currentLang === 'zh' ? '请复制以下QQ号，在QQ中搜索添加：' : 'Please copy the QQ number and search in QQ to add:';
+            document.querySelector('.contact-hint').textContent = t.contactHint;
             
             // 更新语录
             updateQuote();
